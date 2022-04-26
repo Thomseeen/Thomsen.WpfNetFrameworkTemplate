@@ -1,11 +1,10 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Input;
 
-using Thomsen.WpfNetFrameworkTemplate.Views;
 using Thomsen.WpfTools.Mvvm;
 
 namespace Thomsen.WpfNetFrameworkTemplate.ViewModels {
-    internal class MainViewModel : BaseViewModel<MainView> {
+    internal class MainWindowViewModel : BaseViewModel {
         #region Private Fields
         #region Commands
         private ICommand _testCmd;

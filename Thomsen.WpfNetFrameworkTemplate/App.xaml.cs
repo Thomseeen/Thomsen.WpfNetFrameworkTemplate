@@ -1,6 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
-using Thomsen.WpfNetFrameworkTemplate.ViewModels;
 using Thomsen.WpfNetFrameworkTemplate.Views;
 
 namespace Thomsen.WpfNetFrameworkTemplate {
@@ -9,20 +9,19 @@ namespace Thomsen.WpfNetFrameworkTemplate {
     /// </summary>
     public partial class App : Application {
         #region Private Fields
-        private readonly MainViewModel _viewModel = new();
+        private readonly MainWindowView _view = new();
         #endregion Private Fields
 
         #region Application Overrides
         protected override void OnStartup(StartupEventArgs e) {
             base.OnStartup(e);
 
-            _viewModel.Show();
+            Current.MainWindow = _view;
+            Current.MainWindow.Show();
         }
 
         protected override void OnExit(ExitEventArgs e) {
             base.OnExit(e);
-
-            _viewModel.Dispose();
         }
         #endregion Application Overrides
     }
