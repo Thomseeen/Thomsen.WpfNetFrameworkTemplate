@@ -4,7 +4,7 @@ using System.Windows.Input;
 namespace Thomsen.WpfTools.Mvvm {
     public class CommandHandler : ICommand {
         #region Private Fields
-        private readonly Action _action;
+        private readonly Action<object> _action;
         private readonly Func<bool> _canExecute;
         #endregion Private Fields
 
@@ -14,7 +14,7 @@ namespace Thomsen.WpfTools.Mvvm {
         /// </summary>
         /// <param name="action">Action to be executed by the command</param>
         /// <param name="canExecute">A bolean property to containing current permissions to execute the command</param>
-        public CommandHandler(Action action, Func<bool> canExecute) {
+        public CommandHandler(Action<object> action, Func<bool> canExecute) {
             _action = action;
             _canExecute = canExecute;
         }
@@ -45,7 +45,7 @@ namespace Thomsen.WpfTools.Mvvm {
         /// </summary>
         /// <param name="parameter"></param>
         public void Execute(object parameter) {
-            _action();
+            _action(parameter);
         }
         #endregion Public Methods
     }

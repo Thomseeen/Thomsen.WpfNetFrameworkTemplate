@@ -59,6 +59,7 @@
     <Compile Include="Util\Converter\VisibilityBooleanConverter.cs" />
     <Compile Include="Util\CustomCursor.cs" />
     <Compile Include="Util\EnumBindingSourceExtension.cs" />
+    <Compile Include="Util\ExceptionExtension.cs" />
     <Compile Include="Util\FocusExtension.cs" />
     <Compile Include="Util\SafeDispatcher.cs" />
     <Page Include="Views\MainWindowView.xaml">

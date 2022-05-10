@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 
 namespace Thomsen.WpfTools.Mvvm {
-    public abstract class BaseModel : INotifyPropertyChanged {
+    public class BaseModel : INotifyPropertyChanged {
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 
