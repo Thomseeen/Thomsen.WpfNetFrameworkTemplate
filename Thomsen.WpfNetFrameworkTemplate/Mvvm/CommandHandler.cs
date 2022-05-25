@@ -25,8 +25,12 @@ namespace Thomsen.WpfTools.Mvvm {
         /// Wires CanExecuteChanged event 
         /// </summary>
         public event EventHandler CanExecuteChanged {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
+            add {
+                CommandManager.RequerySuggested += value;
+            }
+            remove {
+                CommandManager.RequerySuggested -= value;
+            }
         }
         #endregion Events
 
