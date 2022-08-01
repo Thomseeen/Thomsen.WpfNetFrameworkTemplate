@@ -2,10 +2,11 @@
 using System.ComponentModel;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace Thomsen.WpfTools.Mvvm {
-    public abstract class BaseViewModel<T> : INotifyPropertyChanged, IDisposable where T : Window, new() {
+    public abstract class BaseViewModel<TWindow> : INotifyPropertyChanged, IDisposable where TWindow : Window, new() {
         #region Private Fields
         private bool _disposed;
 
@@ -32,7 +33,7 @@ namespace Thomsen.WpfTools.Mvvm {
 
         public void Show() {
             if (_view is null) {
-                _view = new T {
+                _view = new TWindow {
                     DataContext = this
                 };
 
@@ -42,6 +43,8 @@ namespace Thomsen.WpfTools.Mvvm {
             }
 
             _view.Loaded += View_Loaded;
+            _view.Closing += View_Closing;
+            _view.Closed += View_Closed;
 
             _view.Show();
         }
@@ -51,11 +54,13 @@ namespace Thomsen.WpfTools.Mvvm {
                 throw new InvalidOperationException("ShowDialog can only be called once.");
             }
 
-            _view = new T {
+            _view = new TWindow {
                 DataContext = this
             };
 
             _view.Loaded += View_Loaded;
+            _view.Closing += View_Closing;
+            _view.Closed += View_Closed;
 
             return _view.ShowDialog();
         }
@@ -79,7 +84,28 @@ namespace Thomsen.WpfTools.Mvvm {
         #endregion Public Methods
 
         #region Protected Methods
-        protected virtual void View_Loaded(object sender, RoutedEventArgs e) {
+        private async void View_Loaded(object sender, RoutedEventArgs e) {
+            await OnLoadedAsync();
+        }
+
+        private async void View_Closing(object sender, CancelEventArgs e) {
+            await OnClosingAsync(e);
+        }
+
+        private async void View_Closed(object sender, EventArgs e) {
+            await OnClosedAsync();
+        }
+
+        protected virtual Task OnLoadedAsync() {
+            return Task.FromResult(default(object));
+        }
+
+        protected virtual Task OnClosingAsync(CancelEventArgs e) {
+            return Task.FromResult(default(object));
+        }
+
+        protected virtual Task OnClosedAsync() {
+            return Task.FromResult(default(object));
         }
         #endregion Protected Methods
 
@@ -88,6 +114,11 @@ namespace Thomsen.WpfTools.Mvvm {
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "") {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        protected void SetProperty<T>(ref T backingFieldRef, T value, [CallerMemberName] string propertyName = "") {
+            backingFieldRef = value;
+            OnPropertyChanged(propertyName);
         }
         #endregion INotifyPropertyChanged
 
