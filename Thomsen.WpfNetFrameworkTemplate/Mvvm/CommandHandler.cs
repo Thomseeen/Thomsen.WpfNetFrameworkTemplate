@@ -2,7 +2,7 @@
 using System.Windows.Input;
 
 namespace Thomsen.WpfTools.Mvvm {
-    public class CommandHandler : ICommand {
+    internal class CommandHandler : ICommand {
         #region Private Fields
         private readonly Action<object> _action;
         private readonly Func<bool> _canExecute;
@@ -25,12 +25,8 @@ namespace Thomsen.WpfTools.Mvvm {
         /// Wires CanExecuteChanged event 
         /// </summary>
         public event EventHandler CanExecuteChanged {
-            add {
-                CommandManager.RequerySuggested += value;
-            }
-            remove {
-                CommandManager.RequerySuggested -= value;
-            }
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
         }
         #endregion Events
 

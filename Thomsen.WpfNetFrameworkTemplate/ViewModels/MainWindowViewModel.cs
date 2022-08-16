@@ -6,7 +6,7 @@ using Thomsen.WpfTools.Mvvm;
 using Thomsen.WpfTools.Util;
 
 namespace Thomsen.WpfNetFrameworkTemplate.ViewModels {
-    internal class MainWindowViewModel : BaseViewModel<MainWindowView> {
+    internal class MainWindowViewModel : BaseWindowViewModel<MainWindowView> {
         #region Private Fields
         #region Commands
         private ICommand _testCmd;

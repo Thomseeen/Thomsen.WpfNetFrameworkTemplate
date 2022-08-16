@@ -56,6 +56,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Mvvm\BaseWindowViewModel.cs" />
+    <Compile Include="Mvvm\Extensions\BindingProxy.cs" />
+    <Compile Include="Mvvm\Extensions\DropFilesBehaviorExtension.cs" />
+    <Compile Include="Mvvm\Extensions\IFilesDropped.cs" />
+    <Compile Include="Mvvm\Extensions\SizeObserverExtension.cs" />
+    <Compile Include="Mvvm\HotkeyCommandHandler.cs" />
+    <Compile Include="Util\Converter\CenterConverter.cs" />
+    <Compile Include="Util\Converter\CollectionViewNewItemConverter.cs" />
+    <Compile Include="Util\Converter\HexStrToAnyConverter.cs" />
+    <Compile Include="Util\Converter\PerStrToAnyConverter.cs" />
+    <Compile Include="Util\Converter\UnitStrToAnyConverter.cs" />
     <Compile Include="Util\Converter\VisibilityBooleanConverter.cs" />
     <Compile Include="Util\CustomCursor.cs" />
     <Compile Include="Util\EnumBindingSource.cs" />
